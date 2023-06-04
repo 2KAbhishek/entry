@@ -6,6 +6,10 @@ if [ -z "$entry_folder" ]; then
     entry_folder=$ENTRY_DIR
 fi
 
+if [ -z "$entry_folder" ]; then
+    entry_folder=$PWD
+fi
+
 cd "$entry_folder" || exit 1
 
 year=$(date +'%Y')
