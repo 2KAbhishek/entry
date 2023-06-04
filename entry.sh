@@ -19,9 +19,11 @@ $EDITOR "$year/$month/$file_name"
 folder="$(pwd | awk -F "/" '{print $NF}')"
 timestamp=$(date +"%Y-%m-%d %T")
 
-git add .
-git commit -m "$folder Entry: $timestamp"
-git pull --rebase --autostash
-git push
+if ! git diff --quiet; then
+    git add .
+    git commit -m "$folder Entry: $timestamp" >/dev/null 2>&1 &
+    echo "$folder Entry: $timestamp"
+    (git pull --rebase --autostash && git push) >/dev/null 2>&1 &
+fi
 
 cd - || exit
