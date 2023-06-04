@@ -18,7 +18,7 @@ file_name=$(date +'%Y-%m-%d.md')
 
 mkdir -p "$year/$month"
 touch "$year/$month/$file_name"
-$EDITOR "$year/$month/$file_name"
+${EDITOR:-vim} "$year/$month/$file_name"
 
 folder="$(pwd | awk -F "/" '{print $NF}')"
 timestamp=$(date +"%Y-%m-%d %T")
