@@ -26,4 +26,4 @@ if ! git diff --quiet; then
     (git pull --rebase --autostash && git push) >/dev/null 2>&1 &
 fi
 
-cd - || exit
+cd - >/dev/null 2>&1 || exit
