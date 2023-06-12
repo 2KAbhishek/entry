@@ -23,7 +23,8 @@ ${EDITOR:-vim} "$year/$month/$file_name"
 folder="$(pwd | awk -F "/" '{print $NF}')"
 timestamp=$(date +"%Y-%m-%d %T")
 
-if ! git diff --quiet; then
+status=$(git status --porcelain)
+if [ -n "$status" ]; then
     git add .
     git commit -m "$folder Entry: $timestamp" >/dev/null 2>&1 &
     echo "$folder Entry: $timestamp"
