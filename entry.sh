@@ -17,8 +17,8 @@ month=$(date +'%m')
 file_name=$(date +'%Y-%m-%d.md')
 
 mkdir -p "$year/$month"
-touch "$year/$month/$file_name"
-${EDITOR:-vim} "$year/$month/$file_name"
+echo -e "\n## $(date +'%a %d %b %r')\n" >>"$year/$month/$file_name"
+${EDITOR:-vim} '+normal Go ' +startinsert "$year/$month/$file_name"
 
 folder="$(pwd | awk -F "/" '{print $NF}')"
 timestamp=$(date +"%Y-%m-%d %T")
