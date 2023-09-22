@@ -26,7 +26,7 @@ timestamp=$(date +"%Y-%m-%d %T")
 if [ -n "$(git status --porcelain)" ]; then
     git add .
     git commit -m "$folder Entry: $timestamp" >/dev/null 2>&1 &
-    echo "$folder Entry: $timestamp"
+    echo "$folder entry: $timestamp"
     (git pull --rebase --autostash && git push) >/dev/null 2>&1 &
 fi
 
