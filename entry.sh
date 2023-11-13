@@ -24,10 +24,11 @@ folder="$(pwd | awk -F "/" '{print $NF}')"
 timestamp=$(date +"%Y-%m-%d %T")
 
 if [ -n "$(git status --porcelain)" ]; then
+    echo "$folder entry: $timestamp"
+    git pull --rebase --autostash >/dev/null 2>&1 &
     git add .
     git commit -m "$folder Entry: $timestamp" >/dev/null 2>&1 &
-    echo "$folder entry: $timestamp"
-    (git pull --rebase --autostash && git push) >/dev/null 2>&1 &
+    git push >/dev/null 2>&1 &
 fi
 
 cd - >/dev/null 2>&1 || exit
