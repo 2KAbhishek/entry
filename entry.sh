@@ -17,6 +17,7 @@ month=$(date +'%m')
 file_name=$(date +'%Y-%m-%d.md')
 
 mkdir -p "$year/$month"
+cp template.md "$year/$month/$file_name"
 echo -e "## $(date +'%a %d %b %r')\n" >>"$year/$month/$file_name"
 ${EDITOR:-vim} '+normal Go ' +startinsert "$year/$month/$file_name"
 
