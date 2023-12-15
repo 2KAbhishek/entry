@@ -24,9 +24,11 @@
 
 </div>
 
+> entry is now archived, please check out [tdo](https://github.com/2kabhishek/tdo) for similar functionality
+
 entry is a simple script that allows you to make daily entries/logs.
 
-The purpose is to remove all barriers to Journaling and Note taking.
+The purpose is to remove all barriers to Journaling and Note-taking.
 
 It's as simple as running `entry`
 
@@ -46,7 +48,7 @@ for example:
 export ENTRY_DIR="$HOME/Projects/Notes/Journal"
 ```
 
-If `ENTRY_DIR` is not configured you can either pass an arg or the current directory will be used for entries.
+If `ENTRY_DIR` is not configured you can either pass an arg, or the current directory will be used for entries.
 
 ### 🚀 Installation
 
