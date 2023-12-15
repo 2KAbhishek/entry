@@ -15,20 +15,22 @@ cd "$entry_folder" || exit 1
 year=$(date +'%Y')
 month=$(date +'%m')
 file_name=$(date +'%Y-%m-%d.md')
+entry_file="$year/$month/$file_name"
 
-mkdir -p "$year/$month"
-cp template.md "$year/$month/$file_name"
-echo -e "## $(date +'%a %d %b %r')\n" >>"$year/$month/$file_name"
-${EDITOR:-vim} '+normal Go ' +startinsert "$year/$month/$file_name"
+if [ ! -f "$entry_file" ]; then
+    mkdir -p "$year/$month"
+    cp template.md "$entry_file"
+fi
 
-folder="$(pwd | awk -F "/" '{print $NF}')"
-timestamp=$(date +"%Y-%m-%d %T")
+timestamp=$(date +'%a, %d %b %y, %I:%m %p')
+echo -e "\n## $timestamp\n" >>"$entry_file"
+${EDITOR:-vim} '+normal Go ' +startinsert "$entry_file"
 
 if [ -n "$(git status --porcelain)" ]; then
-    echo "$folder entry: $timestamp"
+    echo "entry: $timestamp"
     git pull --rebase --autostash >/dev/null 2>&1 &
     git add .
-    git commit -m "$folder Entry: $timestamp" >/dev/null 2>&1 &
+    git commit -m "$timestamp" >/dev/null 2>&1 &
     git push >/dev/null 2>&1 &
 fi
 
